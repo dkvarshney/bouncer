@@ -12,7 +12,7 @@ import com.dk.bouncer.validation.object.validator.NumberNoneOfValidator;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NumberNoneOf {
 			
-	Class<? extends BaseObjectValidator> validator() default NumberNoneOfValidator.class;
+	Class<? extends BaseObjectValidator<Number>> validator() default NumberNoneOfValidator.class;
 	
 	String message() default "%s is not valid.";
 }

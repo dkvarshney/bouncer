@@ -4,10 +4,10 @@ import java.lang.annotation.Annotation;
 
 import com.dk.bouncer.exception.BouncerException;
 
-public class NumberAnyOfValidator implements BaseObjectValidator {
+public class NumberAnyOfValidator implements BaseObjectValidator<Number> {
 
 	@Override
-	public void validate(String fieldName, Annotation annotation, Object object) {
+	public void validate(String fieldName, Annotation annotation, Number object) {
 		throw BouncerException.withMessage("not implemented yet.");
 	}
 }

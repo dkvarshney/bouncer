@@ -16,7 +16,7 @@ public @interface StringAnyOf {
 
 	boolean ignoreCase() default false;
 
-	Class<? extends BaseObjectValidator> validator() default StringAnyOfValidator.class;
+	Class<? extends BaseObjectValidator<String>> validator() default StringAnyOfValidator.class;
 
 	String message() default "%s is not valid.";
 }

@@ -6,13 +6,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import com.dk.bouncer.validation.object.validator.BaseObjectValidator;
-import com.dk.bouncer.validation.object.validator.NumberValueRangeValidator;
+import com.dk.bouncer.validation.object.validator.StringValidEmailValidator;
 
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface NumberValueRange {
-		
-	Class<? extends BaseObjectValidator<Number>> validator() default NumberValueRangeValidator.class;
+public @interface StringValidEmail {
+
+Class<? extends BaseObjectValidator<String>> validator() default StringValidEmailValidator.class;
 	
-	String message() default "invalid attribute value.";
+	String message() default "%s should be a valid email address.";
+
 }

@@ -12,7 +12,7 @@ import com.dk.bouncer.validation.object.validator.StringValidUrlValidator;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface StringValidUrl {
 		
-	Class<? extends BaseObjectValidator> validator() default StringValidUrlValidator.class;
+	Class<? extends BaseObjectValidator<String>> validator() default StringValidUrlValidator.class;
 	
 	String message() default "%s should be a valid url.";
 }

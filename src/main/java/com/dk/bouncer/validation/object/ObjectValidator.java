@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.dk.bouncer.exception.BouncerException;
 import com.dk.bouncer.validation.object.annotation.NotNull;
 import com.dk.bouncer.validation.object.annotation.NumberAnyOf;
 import com.dk.bouncer.validation.object.annotation.NumberDivisibleBy;
@@ -15,6 +16,7 @@ import com.dk.bouncer.validation.object.annotation.StringLengthRange;
 import com.dk.bouncer.validation.object.annotation.StringNoneOf;
 import com.dk.bouncer.validation.object.annotation.StringPattern;
 import com.dk.bouncer.validation.object.annotation.StringValidBase64;
+import com.dk.bouncer.validation.object.annotation.StringValidEmail;
 import com.dk.bouncer.validation.object.annotation.StringValidUrl;
 import com.dk.bouncer.validation.object.validator.BaseObjectValidator;
 
@@ -41,6 +43,7 @@ public final class ObjectValidator {
 		register(StringPattern.class);
 		register(StringValidBase64.class);		
 		register(StringValidUrl.class);
+		register(StringValidEmail.class);
 	}
 	
 	public static void register(Class<? extends Annotation> annotation) {
@@ -51,7 +54,11 @@ public final class ObjectValidator {
 		validAnnotations.remove(annotation);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void validate(Object object) {
+		if (object == null) {
+			throw BouncerException.withMessage("object can not be null.");
+		}
 		try {
 			Field fileds[] = object.getClass().getDeclaredFields();
 			for (Field field : fileds) {
@@ -61,7 +68,6 @@ public final class ObjectValidator {
 				for (Annotation annotation : list) {
 					Class<? extends Annotation> annotationType = annotation.annotationType();
 					if (validAnnotations.contains(annotationType)) {
-						@SuppressWarnings("unchecked")
 						Class<? extends BaseObjectValidator> validator = (Class<? extends BaseObjectValidator>) 
 						annotationType.getMethod("validator").invoke(annotation);
 						validator.newInstance().validate(field.getName(), annotation, field.get(object));

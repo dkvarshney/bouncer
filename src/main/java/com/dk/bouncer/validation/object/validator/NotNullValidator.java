@@ -5,7 +5,7 @@ import java.lang.annotation.Annotation;
 import com.dk.bouncer.exception.BouncerException;
 import com.dk.bouncer.validation.object.annotation.NotNull;
 
-public class NotNullValidator implements BaseObjectValidator {
+public class NotNullValidator implements BaseObjectValidator<Object> {
 
 	@Override
 	public void validate(String fieldName, Annotation annotation, Object object) {

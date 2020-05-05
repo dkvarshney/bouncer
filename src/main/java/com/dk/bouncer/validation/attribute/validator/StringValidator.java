@@ -28,7 +28,7 @@ public class StringValidator extends BaseAttributeValidator<String, StringValida
 		}
 		return this;
 	}
-
+	
 	public StringValidator isNotLongerThan(int length) {
 		return this.isNotLongerThan(length, String.format("%s should not be longer than %d.", this.attributeName, length));
 	}
@@ -60,11 +60,28 @@ public class StringValidator extends BaseAttributeValidator<String, StringValida
 		return this;
 	}
 
+	public StringValidator isValidEmail() {
+		return this.isValidEmail(String.format("%s should be a valid email address.", this.attributeName));
+	}
+	
+	public StringValidator isValidEmail(String message) {
+		if (this.object == null) {
+			return this;
+		}
+		if (!this.object.matches("^(.+)@(.+)$")) {
+			throw BouncerException.withMessage(message);
+		}
+		return this;
+	}
+	
 	public StringValidator isValidUrl() {
 		return this.isValidUrl(String.format("%s should be a valid url.", this.attributeName));
 	}
 
 	public StringValidator isValidUrl(String message) {
+		if (this.object == null) {
+			return this;
+		}
 		try {
 			new URL(this.object);
 			return this;

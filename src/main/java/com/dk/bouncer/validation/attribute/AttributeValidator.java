@@ -7,6 +7,7 @@ import java.util.Collection;
 import com.dk.bouncer.validation.attribute.validator.CollectionValidator;
 import com.dk.bouncer.validation.attribute.validator.FileValidator;
 import com.dk.bouncer.validation.attribute.validator.NumericValidator;
+import com.dk.bouncer.validation.attribute.validator.ObjectValidator;
 import com.dk.bouncer.validation.attribute.validator.StringValidator;
 import com.dk.bouncer.validation.attribute.validator.TimestampValidator;
 
@@ -34,6 +35,9 @@ public final class AttributeValidator {
         return new FileValidator(fieldName, fileName);
     }
 
+    public static <T extends Object> ObjectValidator<Object> validate(String fieldName, Object object) {
+        return new ObjectValidator<Object>(fieldName, object);
+    }
    
     // CollectionValidator
     public static <T1, T2 extends Collection<T1>> CollectionValidator<T1, T2> validate(String fieldName, T2 object) {

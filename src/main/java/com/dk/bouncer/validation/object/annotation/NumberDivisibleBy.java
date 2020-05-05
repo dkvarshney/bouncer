@@ -14,7 +14,7 @@ public @interface NumberDivisibleBy {
 		
 	int value();
 	
-	Class<? extends BaseObjectValidator> validator() default NumberDivisibleValidator.class;
+	Class<? extends BaseObjectValidator<Number>> validator() default NumberDivisibleValidator.class;
 	
 	String message() default "%s should be divisible by %s.";
 }

@@ -16,7 +16,7 @@ public @interface StringLengthRange {
 	
 	int maxLength() default Integer.MAX_VALUE;
 	
-	Class<? extends BaseObjectValidator> validator() default StringLengthRangeValidator.class;
+	Class<? extends BaseObjectValidator<String>> validator() default StringLengthRangeValidator.class;
 	
 	String message() default "%s should be between %d and %d.";
 }

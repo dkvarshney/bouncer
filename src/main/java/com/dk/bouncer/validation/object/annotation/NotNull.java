@@ -12,7 +12,7 @@ import com.dk.bouncer.validation.object.validator.NotNullValidator;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NotNull {
 		
-	Class<? extends BaseObjectValidator> validator() default NotNullValidator.class;
+	Class<? extends BaseObjectValidator<Object>> validator() default NotNullValidator.class;
 	
 	String message() default "%s should not be null.";
 }

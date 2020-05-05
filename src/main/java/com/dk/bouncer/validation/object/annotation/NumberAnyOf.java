@@ -12,7 +12,7 @@ import com.dk.bouncer.validation.object.validator.NumberAnyOfValidator;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NumberAnyOf {
 		
-	Class<? extends BaseObjectValidator> validator() default NumberAnyOfValidator.class;
+	Class<? extends BaseObjectValidator<Number>> validator() default NumberAnyOfValidator.class;
 		
 	
 	String message() default "invalid attribute value.";

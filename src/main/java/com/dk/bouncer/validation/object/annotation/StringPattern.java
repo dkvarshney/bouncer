@@ -14,7 +14,7 @@ public @interface StringPattern {
 		
 	String regexp();
 	
-	Class<? extends BaseObjectValidator> validator() default StringPatternValidator.class;
+	Class<? extends BaseObjectValidator<String>> validator() default StringPatternValidator.class;
 	
 	String message() default "%s should match the pattern %s";
 }

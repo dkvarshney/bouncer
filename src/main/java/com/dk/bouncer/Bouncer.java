@@ -28,41 +28,45 @@ import com.dk.bouncer.validation.attribute.AttributeValidator;
 import com.dk.bouncer.validation.attribute.validator.CollectionValidator;
 import com.dk.bouncer.validation.attribute.validator.FileValidator;
 import com.dk.bouncer.validation.attribute.validator.NumericValidator;
+import com.dk.bouncer.validation.attribute.validator.ObjectValidator;
 import com.dk.bouncer.validation.attribute.validator.StringValidator;
 import com.dk.bouncer.validation.attribute.validator.TimestampValidator;
-import com.dk.bouncer.validation.object.ObjectValidator;
 
 public class Bouncer {
 	
 	// StringValidator
-    public static <T extends String> StringValidator makeSure(String fieldName, T object) {
+    public static <T extends String> StringValidator makeSure(T object, String fieldName) {
         return AttributeValidator.validate(fieldName, object);
     }
 
     
     // NumericValidator
-	public static <T extends Number> NumericValidator<T> makeSure(String fieldName, T object) {
+	public static <T extends Number> NumericValidator<T> makeSure(T object, String fieldName) {
 		return AttributeValidator.validate(fieldName, object);
     }
 	
 	
 	// TimestampValidator
-    public static <T extends Timestamp> TimestampValidator makeSure(String fieldName, T object) {
+    public static <T extends Timestamp> TimestampValidator makeSure(T object, String fieldName) {
         return AttributeValidator.validate(fieldName, object);
     }
 
     // FileValidator
-    public static <T extends String> FileValidator makeSure(String fieldName, File fileName) {
+    public static <T extends String> FileValidator makeSure(File fileName, String fieldName) {
         return AttributeValidator.validate(fieldName, fileName);
     }
 
+    // Object Validator
+    public static <T extends Object> ObjectValidator<Object> makeSure(Object object, String fieldName) {
+        return AttributeValidator.validate(fieldName, object);
+    }
    
     // CollectionValidator
-    public static <T1, T2 extends Collection<T1>> CollectionValidator<T1, T2> makeSure(String fieldName, T2 object) {
+    public static <T1, T2 extends Collection<T1>> CollectionValidator<T1, T2> makeSure(T2 object, String fieldName) {
         return AttributeValidator.validate(fieldName, object);
     }
     
     public static void validate(Object object) {
-    	ObjectValidator.validate(object);
+    	com.dk.bouncer.validation.object.ObjectValidator.validate(object);
     }
 }

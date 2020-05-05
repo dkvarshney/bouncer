@@ -16,7 +16,7 @@ public @interface StringNoneOf {
 	
 	boolean ignoreCase() default false;
 	
-	Class<? extends BaseObjectValidator> validator() default StringNoneOfValidator.class;
+	Class<? extends BaseObjectValidator<String>> validator() default StringNoneOfValidator.class;
 	
 	String message() default "%s is not valid.";
 }

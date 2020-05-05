@@ -12,7 +12,7 @@ import com.dk.bouncer.validation.object.validator.StringValidBase64Validator;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface StringValidBase64 {
 		
-	Class<? extends BaseObjectValidator> validator() default StringValidBase64Validator.class;
+	Class<? extends BaseObjectValidator<String>> validator() default StringValidBase64Validator.class;
 	
 	String message() default "%s should be a valid base64 encoded string.";
 }
